@@ -75,12 +75,10 @@ for (i in 1:num_boot) {
   colnames(data_b)[3] = 'y'
   boot_results[i,] = lrest.fun(data_b)
 }
-summary(boot_results[,4])
-summary(boot_results[,5])
-summary(boot_results[,6])
+summary(boot_results[,4])    #For OR, adjusted model
+summary(boot_results[,5])    #For RR, adjusted model
+summary(boot_results[,6])    #For RD, adjusted model
 
-mean(boot_results[,4])-true_OR
-mean(boot_results[,5])-true_RR
-mean(boot_results[,6])-true_RD
+
 
 
