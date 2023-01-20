@@ -1,4 +1,6 @@
 rm(list=ls())
+library(boot)
+
 set.seed(7635)
 
 N=500
@@ -14,6 +16,17 @@ logit = beta0+beta1*arm+beta2*c
 p = exp(logit)/(1+exp(logit))
 y = rbinom(N,1,p)
 mydata = data.frame(arm,c,y)
+
+logit0 = beta0+beta2*c    #true logit if assigned to control arm
+p0 = exp(logit0)/(1+exp(logit0))
+logit1 = beta0+beta1+beta2*c    #true logit if assigned to treatment arm
+p1 = exp(logit1)/(1+exp(logit1))
+true_cntl = mean(p0)    #true marginal probability in control arm
+true_trt = mean(p1)    #true marginal probability in treatment arm
+true_OR = OR.fun(true_cntl,true_trt)
+true_RR = RR.fun(true_cntl,true_trt)
+true_RD = RD.fun(true_cntl,true_trt)
+
 
 #This function generates probabilities predicted by the unadjusted model
 #Input: dataset, treatment arm assignment='arm'
@@ -55,15 +68,6 @@ lrest.fun = function(data, idx) {
   return(cbind(OR_unadj,RR_unadj,RD_unadj,OR_adj,RR_adj,RD_adj))
 }
 
-logit0 = beta0+beta2*c    #true logit if assigned to control arm
-p0 = exp(logit0)/(1+exp(logit0))
-logit1 = beta0+beta1+beta2*c    #true logit if assigned to treatment arm
-p1 = exp(logit1)/(1+exp(logit1))
-true_cntl = mean(p0)    #true marginal probability in control arm
-true_trt = mean(p1)    #true marginal probability in treatment arm
-true_OR = OR.fun(true_cntl,true_trt)
-true_RR = RR.fun(true_cntl,true_trt)
-true_RD = RD.fun(true_cntl,true_trt)
 
 m = glm(y ~ as.factor(arm)+c, data=mydata, family='binomial')
 tmp = predict(m, newdata=mydata, type='response')
@@ -75,10 +79,13 @@ for (i in 1:num_boot) {
   colnames(data_b)[3] = 'y'
   boot_results[i,] = lrest.fun(data_b)
 }
-summary(boot_results[,4])    #For OR, adjusted model
-summary(boot_results[,5])    #For RR, adjusted model
-summary(boot_results[,6])    #For RD, adjusted model
+c(quantile(boot_results[,4],0.025), quantile(boot_results[,4],0.975))
+c(quantile(boot_results[,5],0.025), quantile(boot_results[,5],0.975))
+c(quantile(boot_results[,6],0.025), quantile(boot_results[,6],0.975))
 
-
+bootstrap = boot(mydata, lrest.fun, R=num_boot)
+boot.ci(bootstrap, type='perc', index=4)$percent[,c(4,5)]
+boot.ci(bootstrap, type='perc', index=5)$percent[,c(4,5)]
+boot.ci(bootstrap, type='perc', index=6)$percent[,c(4,5)]
 
 
