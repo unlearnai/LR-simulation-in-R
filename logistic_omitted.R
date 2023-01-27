@@ -1,6 +1,6 @@
-
 # Study the effect of covariate adjustment on type I error rate and power
-# by varying correlation between covariate and logit probability
+# model 1 is unadjusted
+# model 2 omits an important correlated covariate
 
 rm(list=ls())
 setwd('/Users/liyunfan/Documents/Simulation_logistic')
@@ -13,8 +13,8 @@ set.seed(10003)
 #Repeat M times
 M=100000
 
-#Scenario 6a, 6b: Omitted covariate in the model
-#6a: w/o treatment effect
+#Scenariob: Omitted covariate in the model
+#a: w/o treatment effect
 # beta0 = 1
 beta1 = 0
 # beta2 = 1
@@ -68,7 +68,7 @@ t1err_m2 = sum(m2_reject)/M
 
 
 ########################
-#6b: w/ treatment effect
+#b: w/ treatment effect
 # beta0 = 1
 beta1 = 0.75
 # beta2 = 1
