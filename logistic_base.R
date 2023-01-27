@@ -1,6 +1,6 @@
-
 # Study the effect of covariate adjustment on type I error rate and power
-# by varying correlation between covariate and logit probability
+# this is the base case
+# model 2 is correctly specified
 
 rm(list=ls())
 setwd('/Users/liyunfan/Documents/Simulation_logistic')
@@ -10,8 +10,8 @@ set.seed(9999)
 #Repeat M times
 M=100000
 
-#Scenario 1a, 1b, 1c: Efficiency gain is not related to treatment effect
-#1a: w/o treatment effect
+#Scenario: Efficiency gain is not related to treatment effect
+#a: w/o treatment effect
 beta0 = 1
 beta1 = 0
 beta2 = 1
@@ -60,7 +60,7 @@ mean(m2_z>qnorm(0.975) | m2_z<qnorm(0.025))
 t1err_m2 = sum(m2_reject)/M
 
 ########################
-#1b: w/ treatment effect
+#b: w/ treatment effect
 beta0 = 1
 beta1 = 0.75
 beta2 = 1
@@ -125,7 +125,7 @@ power1_m2 = sum(m2_reject)/M
 
 
 #################################
-#1c: w/ a larger treatment effect
+#c: w/ a larger treatment effect
 beta0 = 1
 beta1 = 0.85
 beta2 = 1
@@ -199,5 +199,4 @@ cbind(round(power2_m1,3)*100, round(power2_m2,3)*100,
       round(bias_factor2,2), round(var_factor2,2),
       round(p0c_mean,2), round(p0c_var,2), round(eff_factor2,2), round(aeff_factor2,2))
 cbind(bias_factor2_std, var_factor2_std, p0c_mean_std, eff_factor2_std, aeff_factor2_std)
-
 
