@@ -1,6 +1,6 @@
-
 # Study the treatment effect estimation by unadjusted and adjusted LR models
 # Use g-computation to get marginal treatment effect
+# this is the base scenario; model is correctly specified
 
 rm(list=ls())
 setwd('/Users/liyunfan/Documents/Simulation_logistic')
@@ -54,7 +54,7 @@ lrest.fun = function(data, idx) {
 
 
 ########################
-#Scenario 1b: Correctly specified model, w/ treatment effect
+#Scenario b: Correctly specified model, w/ treatment effect
 beta0 = 1
 beta1 = 0.75
 beta2 = 1
@@ -131,6 +131,5 @@ round(c(mean(RR_adj_ci[,2]-RR_adj_ci[,1]), sd(RR_adj_ci[,2]-RR_adj_ci[,1])),3)
 round(c(mean(RD_adj_ci[,2]-RD_adj_ci[,1]), sd(RD_adj_ci[,2]-RD_adj_ci[,1])),4)
 
 save(true_OR, true_RR, true_RD, est_original, OR_unadj_ci, RR_unadj_ci, RD_unadj_ci,
-     OR_adj_ci, RR_adj_ci, RD_adj_ci, file = "logistic_trt_model1b.RData")
-
+     OR_adj_ci, RR_adj_ci, RD_adj_ci, file = "logistic_trt_base.RData")
 
