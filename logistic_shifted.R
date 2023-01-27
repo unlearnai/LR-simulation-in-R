@@ -1,11 +1,9 @@
-
 # Study the effect of covariate adjustment on type I error rate and power
-# by varying correlation between covariate and logit probability
+# model 1 is unadjusted
+# model 2 uses a covariate with random error and systematic shift
 
 rm(list=ls())
 setwd('/Users/liyunfan/Documents/Simulation_logistic')
-
-# load("logistic_model5.RData")
 
 
 N=500
@@ -13,8 +11,8 @@ set.seed(10002)
 #Repeat M times
 M=100000
 
-#Scenario 5a, 5b: covariates with random error and systematic bias
-#5a: w/o treatment effect
+#Scenario: covariates with random error and systematic bias
+#a: w/o treatment effect
 # beta0 = 0
 beta1 = 0
 # beta2 = 1
@@ -70,7 +68,7 @@ t1err_m2 = sum(m2_reject)/M
 
 
 ########################
-#5b: w/ treatment effect
+#b: w/ treatment effect
 # beta0 = 0
 beta1 = 0.75
 # beta2 = 1
@@ -142,7 +140,4 @@ cbind(round(power_m1,3)*100, round(power_m2,3)*100,
       round(bias_factor,2), round(var_factor,2),
       round(mean(p0_mean),2), round(mean(p0_var),2), round(eff_factor_err,2), round (aeff_factor,2))
 cbind(bias_factor_std, var_factor_std, sqrt(var(p0_mean)), eff_factor_err_std, aeff_factor_std)
-
-
-
 
