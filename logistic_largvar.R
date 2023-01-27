@@ -1,6 +1,6 @@
-
 # Study the effect of covariate adjustment on type I error rate and power
-# by varying correlation between covariate and logit probability
+# a larger variance in \mu_0 leads to better efficiency
+# model 2 is correctly specified
 
 rm(list=ls())
 setwd('/Users/liyunfan/Documents/Simulation_logistic')
@@ -129,5 +129,4 @@ cbind(round(power_m1,3)*100, round(power_m2,3)*100,
       round(bias_factor,2), round(var_factor,2),
       round(mean(p0_mean),2), round(mean(p0_var),2), round(eff_factor,2), round(aeff_factor,2))
 cbind(bias_factor_std, var_factor_std, sqrt(var(p0_mean)), eff_factor_std, aeff_factor_std)
-
 
