@@ -1,6 +1,6 @@
-
 # Study the effect of covariate adjustment on type I error rate and power
-# by varying correlation between covariate and logit probability
+# with prevalence (among untreated) closer to 1
+# model 2 is correctly specified
 
 rm(list=ls())
 setwd('/Users/liyunfan/Documents/Simulation_logistic')
@@ -11,8 +11,8 @@ set.seed(9997)
 #Repeat M times
 M=100000
 
-#Scenario 3a, 3b: Efficiency gain is related to variance of covariate
-#3a: w/o treatment effect
+#Scenario: Efficiency gain is related to prevalence of outcome
+#a: w/o treatment effect
 beta0 = 2.5
 beta1 = 0
 beta2 = 1
@@ -63,7 +63,7 @@ t1err_m2 = sum(m2_reject)/M
 
 
 ########################
-#3b: w/ treatment effect
+#b: w/ treatment effect
 beta0 = 2.5
 beta1 = 0.75
 beta2 = 1
@@ -129,5 +129,4 @@ cbind(round(power_m1,3)*100, round(power_m2,3)*100,
       round(bias_factor,2), round(var_factor,2),
       round(mean(p0_mean),2), round(mean(p0_var),2), round(eff_factor,2), round(aeff_factor,2))
 cbind(bias_factor_std, var_factor_std, sqrt(var(p0_mean)), eff_factor_std, aeff_factor_std)
-
 
