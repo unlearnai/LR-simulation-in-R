@@ -29,6 +29,7 @@ logistic_trt_randerr -> scenario 4b
 logistic_trt_omitted -> scenario 6b
 
 
+Others
 
 par_bootstrap -> comparison between parametric and nonparametric bootstrap (nonparametric bootstrap is used in the article)
 
