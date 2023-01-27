@@ -1,6 +1,6 @@
-
 # Study the treatment effect estimation by unadjusted and adjusted LR models
 # Use g-computation to get marginal treatment effect
+# a larger variance in \mu_0; model is correctly specified
 
 rm(list=ls())
 setwd('/Users/liyunfan/Documents/Simulation_logistic')
@@ -54,7 +54,7 @@ lrest.fun = function(data, idx) {
 
 
 ########################
-#Scenario 1c: Correctly specified model, w/ a larger treatment effect
+#Scenario c: Correctly specified model, w/ a larger treatment effect
 beta0 = 1
 beta1 = 0.85
 beta2 = 1
@@ -112,6 +112,7 @@ summary(true_OR)
 summary(true_RR)
 summary(true_RD)
 #Summary of original estimates
+colnames(est_original) = c('OR_unadj','RR_unadj','RD_unadj','OR_adj','RR_adj','RD_adj')
 round(apply(est_original,2,FUN=quantile,probs=0.25),3)
 round(apply(est_original,2,FUN=median),3)
 round(apply(est_original,2,FUN=quantile,probs=0.75),3)
@@ -131,4 +132,4 @@ round(c(mean(RR_adj_ci[,2]-RR_adj_ci[,1]), sd(RR_adj_ci[,2]-RR_adj_ci[,1])),3)
 round(c(mean(RD_adj_ci[,2]-RD_adj_ci[,1]), sd(RD_adj_ci[,2]-RD_adj_ci[,1])),4)
 
 save(true_OR, true_RR, true_RD, est_original, OR_unadj_ci, RR_unadj_ci, RD_unadj_ci,
-     OR_adj_ci, RR_adj_ci, RD_adj_ci, file = "logistic_trt_model1c.RData")
+     OR_adj_ci, RR_adj_ci, RD_adj_ci, file = "logistic_trt_largeff.RData")
