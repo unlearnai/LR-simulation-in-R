@@ -1,4 +1,4 @@
-This folder contains experiments and proof-of-concept for the PROCOVA-LR.
+**This folder contains experiments and proof-of-concept for the PROCOVA-LR**
 
 cor_est_bins.R: R code to explore whether the correlation between true and available underlying probabilities can be estimated by grouping participants into bins (it can't)
 
