@@ -1,8 +1,8 @@
 **Functions for PROCOVA-LR Simulation Studies on Power**
 
-Six different settings for the simulation studies are considered. The settings are 'Base', 'Large Variance', 'Higher Prevalence', 'Random Error', 'Shifted', and 'Omitted Covariate'. Each is implemented in R via a corresponding .R file.
+Six different settings for the simulation studies are considered. The settings are 'Base and Large Effect', 'Large Variance', 'Higher Prevalence', 'Random Error', 'Shifted', and 'Omitted Covariate'. Each is implemented in R via a corresponding .R file.
 
-In the first set of simulation settings (‘Base’, ‘Large Variance’, and ‘Higher Prevalence’), the covariate-adjusted model is correctly specified. The data generating model contains a covariate, the covariate-adjusted analysis model is a logistic regression model specified exactly as the data generating model, and the unadjusted model omits the covariate from the analysis. The settings are summarized in Section 4.2 of Li and Sabbaghi (2023).
+In the first set of simulation settings (‘Base and Large Effect’, ‘Large Variance’, and ‘Higher Prevalence’), the covariate-adjusted model is correctly specified. The data generating model contains a covariate, the covariate-adjusted analysis model is a logistic regression model specified exactly as the data generating model, and the unadjusted model omits the covariate from the analysis. The settings are summarized in Section 4.2 of Li and Sabbaghi (2023).
 
 The second set of simulation settings (‘Random Error’, ‘Shifted’, and ‘Omitted Covariate’) considers the more realistic case in which the data generating model and both types of analyses model (i.e., the unadjusted and adjusted model) are discrepant, and the former model is unknown. The simulation settings are summarized in Section 4.3 of Li and Sabbaghi (2023). They are labeled as 4, 5, and 6 in continuation of the previous set of three settings.
 
