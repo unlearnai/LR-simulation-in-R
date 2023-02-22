@@ -11,3 +11,5 @@ logistic_demo_cntonly.R: Proof-of-concept for the usage of the efficiency factor
 logistic_demo_unbalanced.R: Proof-of-concept for the usage of the efficiency factor in sample size reduction and power gain when the original design doesn't have 1:1 randomization
 
 par_bootstrap.R: Comparing parametric to nonparametric bootstrapping in estimating treatment effect
+
+Waldtest_estimands.R: Proof-of-concept for using Wald test on relative risk (RR) and risk difference (RD).
